@@ -7,7 +7,7 @@ What we will be doing is removing the Reserved Memory Regions to allow this tabl
 
 ## Preparation
 
-First we need to gather files necessary to patch our DMAR Table.  If you've used the `SysReport` Quirk that is included with the Debug version of OpenCore, then you should have a `DMAR-1.aml` file residing inside your EFI Partition `SysReport/ACPI` folder, otherwise please follow the procedure [here](/Manual/dump.html#sysreport-quirk) to get started.  Once you have the file, it is best to store it in a safe location for easy access later on in this section.
+First we need to gather files necessary to patch our DMAR Table.  If you've used the `SysReport` quirk that is included with the debug version of OpenCore, then you should already have the necessary files residing inside your EFI Partition `SysReport/ACPI` folder, otherwise please follow the procedure [here](/Manual/dump.html#sysreport-quirk) to get started.  Navigate to that folder and verify you have a `DMAR-1.aml` file present, if so we are ready to proceed further.
 
 ## Manipulation
 
@@ -17,7 +17,7 @@ Easiest way to manipulate the DMAR table is to use the GUI program MaciASL, this
 
 ![](../../images/Universal/dmar-md/dmar-example-rmr.png) | ![](../../images/Universal/dmar-md/dmar-example-normr.png)
 :-------------------------------:|:------------------:
-Example of a DMAR Table with Reserved Memory Regions. | Example of a DMAR Table without Reserved Memory Regions
+**Example #1** Example of a DMAR Table with Reserved Memory Regions. | **Example #2** Example of a DMAR Table without Reserved Memory Regions
 
 If your DMAR Table looks like Example #2 which has no Reserved Memory Regions, you can skip this guide and merely disable `DisableIoMapper` in your `config.plist`, and enable VT-d in your BIOS.
 
@@ -28,7 +28,7 @@ With our `DMAR-1.aml` file open, it is time to begin patching it, and do not wor
 ![](../../images/Universal/dmar-md/dmar-rmr-selected.png)
 ::: details Learn More
 
-To learn more, you can read up on [DMA Remapping Table: "Intel® Virtualization Technology for Directed I/O"](https://software.intel.com/content/dam/develop/external/us/en/documents-tps/vt-directed-io-spec.pdf).
+You can read up on [DMA Remapping Table: "Intel® Virtualization Technology for Directed I/O"](https://software.intel.com/content/dam/develop/external/us/en/documents-tps/vt-directed-io-spec.pdf).
 
 :::
 
@@ -36,7 +36,7 @@ The information starting with `Raw Table Data` at the end of the table is safe t
 
 ::: warning
 
-**NOTE**: Do not confuse this with a SSDT, as that is a `Secondary System Description Table` which provides extra details for the actual DSDT.
+Do not confuse this with a SSDT, as that is a `Secondary System Description Table` which provides extra details for the actual DSDT.
 
 :::
 
